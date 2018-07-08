@@ -1,0 +1,52 @@
+@import "../../theme/sass/conf/conf";
+
+.modal-buttons .btn {
+  margin-right: 20px;
+}
+
+.modal-content {
+  color: white;
+  background-color: #4994cb;
+  margin-bottom: 0px;
+}
+
+.modal-content > img {
+  height: 75px;
+  border: 1px solid #000;
+  margin: 10px 5px 0 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  background: black;
+  opacity: 0.7;
+  z-index: 9999;
+
+  .overlay-text {
+    margin: auto;
+    height: 100%;
+    width: 118px;
+    padding-top: 50%;
+      .loader {
+          border: 16px solid #f3f3f3; /* Light grey */
+          border-top: 16px solid #3498db; /* Blue */
+          border-radius: 50%;
+          width: 120px;
+          height: 120px;
+          animation: spin 2s linear infinite;
+      }
+
+      @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+      }
+  }
+}
+.modal-content{
+  border:0px;
+}

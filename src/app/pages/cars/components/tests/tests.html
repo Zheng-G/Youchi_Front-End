@@ -1,0 +1,19 @@
+<div class="widgets">
+  <div class="row">
+    <div class="col-lg-4 col-md-12" >
+      <ba-card title="城市" baCardClass="with-scroll table-panel">
+        <area-table [areasData]="areasData"></area-table> 
+      </ba-card>
+    </div>
+    <div class="col-lg-4 col-md-12" >
+      <ba-card title="检测类别" baCardClass="with-scroll table-panel">
+        <test-category-table [testCategories] = "testCategories" (categorySelected)="handleCategorySelected($event)"></test-category-table> 
+      </ba-card>
+    </div>
+    <div class="col-lg-4 col-md-12" >
+      <ba-card title="{{selectedCategoryName}}项目表" baCardClass="with-scroll table-panel">
+        <category-item-table [categoryItems] = "categoryItems" [targetCategory]="selectedCategory"></category-item-table> 
+      </ba-card>
+    </div>
+  </div>
+</div>

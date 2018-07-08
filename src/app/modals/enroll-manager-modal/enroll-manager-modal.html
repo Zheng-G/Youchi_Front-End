@@ -1,0 +1,33 @@
+<ba-card class="modal-content" title={{mode}} baCardClass="with-scroll no-bottom-margin">
+            <!--<option [ngValue]="oil" *ngFor="let oil of carTypes[0]['fuelOil']">{{oil.oilName}}</option>-->
+  <div class="error" *ngIf="error">
+    {{error}}
+  </div>
+  <div class="enroll">
+      <div class="username">
+        <label>UserName</label>
+        <input type="text" class="form-control" [(ngModel)]="username" required>
+      </div>
+      <div class="password">
+        <label>Password</label>
+        <input type="password" class="form-control" [(ngModel)]="password">
+      </div>
+      <div class="password" >
+        <label>confirm new password</label>
+        <input type="password" class="form-control" [(ngModel)]="confirmPassword">
+      </div>
+  </div>
+
+  <div class="row enroll1">
+    <!--<div class="form-control">-->
+      <div class="save" style="text-align:center">
+        <button type="button" class="btn btn-success btn-md" (click)="onSave()">确认</button>
+      </div>
+    <!--</div>-->
+    <!--<div class="form-control">-->
+      <!--<div class="button-wrapper" style="text-align:center">-->
+        <button type="button" class="btn btn-danger btn-md" (click)="closeModal()">取消</button>
+      <!--</div>-->
+    <!--</div>-->
+  </div>
+</ba-card>

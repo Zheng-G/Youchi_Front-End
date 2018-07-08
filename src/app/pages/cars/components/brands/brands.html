@@ -1,0 +1,53 @@
+<div class="widgets">
+
+  <div class="row">
+    <div class="col-lg-6 col-md-12" *ngIf="brands">
+      <ba-card title="车品牌表" baCardClass="with-scroll table-panel">
+        <brands-table [brandsData]="brands" (brandSelected)="handleBrandSelected($event)"></brands-table>
+      </ba-card>
+    </div>
+    <div class="col-lg-6 col-md-12">
+      <ba-card *ngIf="selectedBrandName" title="{{selectedBrandName}}车系表" baCardClass="with-scroll table-panel">
+        <series-table [seriesData]="brandSeries" [targetBrand]="selectedBrand"></series-table>
+      </ba-card>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4 col-md-12" *ngIf="carTypes">
+      <ba-card title="车型表" baCardClass="with-scroll table-panel">
+        <type-table [typesData]="carTypes"></type-table>
+      </ba-card>
+    </div>
+    <div class="col-lg-4 col-md-12" *ngIf="carTypes">
+      <ba-card title="车色表" baCardClass="with-scroll table-panel">
+        <color-table [typesData]="carTypes"></color-table>
+      </ba-card>
+    </div>
+    <div class="col-lg-4 col-md-12" *ngIf="carTypes">
+      <ba-card title="车生产国系表" baCardClass="with-scroll table-panel">
+        <country-table [typesData]="carTypes"></country-table>
+      </ba-card>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4 col-md-12" *ngIf="carTypes">
+      <ba-card title="车座位数表" baCardClass="with-scroll table-panel">
+        <capability-table [typesData]="carTypes"></capability-table>
+      </ba-card>
+    </div>
+    <div class="col-lg-4 col-md-12" *ngIf="carTypes">
+      <ba-card title="燃油类型表" baCardClass="with-scroll table-panel">
+        <oils-table [typesData]="carTypes"></oils-table>
+      </ba-card>
+    </div>
+    <div class="col-lg-4 col-md-12" *ngIf="carTypes">
+      <ba-card title="排放标准表" baCardClass="with-scroll table-panel">
+        <emission-table [typesData]="carTypes"></emission-table>
+      </ba-card>
+    </div>
+  </div>
+
+
+</div>

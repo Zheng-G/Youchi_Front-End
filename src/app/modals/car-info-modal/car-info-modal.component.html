@@ -1,0 +1,393 @@
+<ba-card class="modal-content" title={{modalHeader}} baCardClass="with-scroll no-bottom-margin">
+
+  <form>
+    <div class="row"> 
+      
+      <div class="col-sm-4" *ngIf="mode === 'edit'">
+        <label for="uniqueId">车源号</label>
+        <input [(ngModel)]="uniqueId" type="text" class="form-control" id="uniqueId" placeholder="sellcar unique id" name="uniqueId" disabled>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group" *ngIf="mode === 'create'">
+          <label for="input05">用户ID</label>
+          <input type="text" class="form-control" id="sellerId" placeholder={{userData._id}} disabled>
+        </div>
+        <div class="form-group" *ngIf="mode === 'edit'">
+          <label for="input05">用户ID</label>
+          <input type="text" class="form-control" id="sellerId" placeholder={{userData.sellerId}} disabled>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group" *ngIf="mode === 'create'">
+          <label for="input05">用户电话号码</label>
+          <input type="text" class="form-control" id="sellerPhoneNumber" placeholder={{userData.phoneNumber}} disabled>
+        </div>
+        <div class="form-group" *ngIf="mode === 'edit'">
+          <label for="input05">用户电话号码</label>
+          <input type="text" class="form-control" id="sellerPhoneNumber" placeholder={{userData.sellerPhone}} disabled>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group" *ngIf="mode === 'create'">
+          <label for="input05">用户名</label>
+          <input type="text" class="form-control" id="sellerName" placeholder={{userData.userName}} disabled>
+        </div>
+        <div class="form-group" *ngIf="mode === 'edit'">
+          <label for="input05">用户名</label>
+          <input type="text" class="form-control" id="sellerName" placeholder={{userData.sellerName}} disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="brandSelect">品牌</label>
+          <select class="form-control" id="brandSelect" [(ngModel)]="selectedBrand" (ngModelChange)="onChangeBrand($event)" name="brand">
+            <option [ngValue]="brand" *ngFor="let brand of brandsData">{{brand.chName}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="seriesSelect">车系</label>
+          <select class="form-control" id="seriesSelect" [ngModel]="selectedSeries" (ngModelChange)="onChangeSeries($event)" name="series">
+            <option [ngValue]="series" *ngFor="let series of selectedBrandSeries" >{{series.chName}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="carType">车型</label>
+          <div>
+              <select class="form-control" id="carType" [ngModel]="selectedCarType" (ngModelChange)="onChangeCarType($event)" name="carTypeSelect">
+                <option [ngValue]="type" *ngFor="let type of carTypes[0]['type']">{{type.chName}}</option>
+              </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="carTypes" required>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="carColor">车色</label>
+          <select class="form-control" id="carColor" [ngModel]="selectedCarColor" (ngModelChange)="onChangeCarColor($event)" name="carColorSelect">
+            <option [ngValue]="color" *ngFor="let color of carTypes[0]['color']">{{color.colorName}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="productionCountry">车生产国系</label>
+          <select class="form-control" id="productionCountry" [ngModel]="productionCountry" (ngModelChange)="onChangeProdCountry($event)" name="prodCountrySelect">
+            <option [ngValue]="country" *ngFor="let country of carTypes[0]['productCountry']">{{country.countryName}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="gearshiftType">变速箱</label>
+          <select class="form-control" id="gearshiftType" [ngModel]="carGearshift" (ngModelChange)="onChangeGearType($event)" name="gearshiftSelect">
+            <option>自动</option>
+            <option>手动</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="carTypes" required>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="oilType">燃油类型</label>
+          <select class="form-control" id="oilType" [ngModel]="carOil" (ngModelChange)="onChangeOil($event)" name="oilSelect">
+            <option [ngValue]="oil" *ngFor="let oil of carTypes[0]['fuelOil']">{{oil.oilName}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="capability">座位数</label>
+          <select class="form-control" id="capability" [ngModel]="carCapability" (ngModelChange)="onChangeCapability($event)" name="capabilitySelect">
+            <option [ngValue]="cap" *ngFor="let cap of carTypes[0]['capability']">{{cap.capability}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="emissionLevel">排放标准</label>
+          <select class="form-control" id="emissionLevel" [ngModel]="carEmissionLevel" (ngModelChange)="onChangeEmissionLevel($event)" name="emissionLevelSelect">
+            <option [ngValue]="el" *ngFor="let el of carTypes[0]['emission']">{{el.emissionLevel}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="emissionAmount">排放量</label>
+          <input [(ngModel)]="emissionAmount" type="text" class="form-control" id="emissionAmount" placeholder="排放量（L）" name="emissionAmount">
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="price">价格</label>
+          <input [(ngModel)]="price" type="text" class="form-control" id="price" placeholder="价格（万元）" name="price">
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group" *ngIf="mode === 'edit'">
+          <label for="newPrice">洗车价格</label>
+          <input [(ngModel)]="newPrice" type="text" class="form-control" id="newPrice" placeholder="洗车价格（万元）" name="newPrice">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="purchaseDate">上牌时间</label>
+          <!--<input [(ngModel)]="purchaseDate" type="text" class="form-control" id="purchaseDate" placeholder="请选择上牌时间" name="purchaseDate">-->
+
+          <form class="form-inline">
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd"
+                      name="purchaseDate" [(ngModel)]="purchaseDate" ngbDatepicker [dayTemplate]="customDay" [markDisabled]="isDisabled" #d="ngbDatepicker">
+                <div class="input-group-addon" (click)="d.toggle()" >
+                  <img src="assets/img/theme/icon/kameleon/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <ng-template #customDay let-date="date" let-currentMonth="currentMonth" let-selected="selected" let-disabled="disabled">
+            <span class="custom-day" [class.weekend]="isWeekend(date)"
+                  [class.bg-primary]="selected" [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+              {{ date.day }}
+            </span>
+          </ng-template>
+
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="totalDriven">里程数</label>
+          <input [(ngModel)]="totalDriven" type="text" class="form-control" id="totalDriven" placeholder="行驶里程（万公里）" name="totalDriven">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="carPlacedCity">车所在地</label>
+          <select class="form-control" id="carPlacedCity" [ngModel]="carPlacedCity" (ngModelChange)="onChangeCarPosition($event)" name="positionSelect">
+            <option [ngValue]="city" *ngFor="let city of areasData">{{city.chName}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <div class="form-group">
+          <label for="currentAddress">验车地址</label>
+          <input [(ngModel)]="currentCarPlace" type="text" class="form-control" id="currentCarPlace" placeholder="验车地址" name="currentCarPlace">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">卖家说</label>
+      <textarea [(ngModel)]="description" placeholder="卖家说" class="form-control" id="description" name="description"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="marketingStatus">卖车进度</label>
+      <select class="form-control" id="marketingStatus" [ngModel]="carStatus" (ngModelChange)="onChangeCarStatus($event)" name="carStatus">
+        <option value="等待验车">等待验车</option>
+        <option value="在商场">在商场</option>
+        <option value="看车预约">看车预约</option>
+        <option value="出售完成">出售完成</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <div class="form-group" *ngIf="mode === 'edit'" style="padding-right: 267px;padding-left: 15px">
+          <label for="marketingStartDate">上架时间</label>
+          <form class="form-inline">
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd"
+                      name="marketingStartDate" [(ngModel)]="marketingStartDate" ngbDatepicker [dayTemplate]="customDay" [markDisabled]="isDisabled" #d="ngbDatepicker">
+                <div class="input-group-addon" (click)="d.toggle()" >
+                  <img src="assets/img/theme/icon/kameleon/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <ng-template #customDay let-date="date" let-currentMonth="currentMonth" let-selected="selected" let-disabled="disabled">
+            <span class="custom-day" [class.weekend]="isWeekend(date)"
+                  [class.bg-primary]="selected" [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+              {{ date.day }}
+            </span>
+          </ng-template>
+
+         </div>
+     </div>
+    <div  class="form-control" style="padding-left: 400px" *ngIf="mode === 'edit'"> 
+        <div *ngIf="mode === 'edit'"> 检满期日子: <input type="number" [(ngModel)]="insuranceMsg.msg1.year" class="form-group"  name="msg1_year"  min="2017" max="2050" style="background: #5a9ecf;color: #fff"> : 年 <input type="number" [(ngModel)]="insuranceMsg.msg1.month" class="form-group" name="msg1_month"  min="1" max="12" style="background: #5a9ecf;color: #fff"> : 月     
+        </div>
+          <br>
+        <div *ngIf="mode === 'edit'">交强险满期日子: <input type="number" [(ngModel)]="insuranceMsg.msg2.year" class="form-group"  name="msg2_year" min="2017"  max="2050" style="background: #5a9ecf;color: #fff"> : 年 
+                   <input type="number" [(ngModel)]="insuranceMsg.msg2.month" class="form-group"  name="msg2_month" min="1" max="12" style="background: #5a9ecf;color: #fff"> : 月    
+        </div>
+          <br>
+        <div *ngIf="mode === 'edit'"  >商业险满期日子: <input type="number" [(ngModel)]="insuranceMsg.msg3.year" [disabled]="insuranceMsg.msg3.status" class="form-group"  name="msg3_year" min="2017" max="2050" style="background: #5a9ecf;color: #fff" > : 年  
+                   <input type="number" [(ngModel)]="insuranceMsg.msg3.month" [disabled]="insuranceMsg.msg3.status" class="form-group"  name="msg3_month" min="1" max="12" style="background: #5a9ecf;color: #fff" > : 月     
+                   <!-- <input type="checkbox" [(ngModel)]="insuranceMsg.msg3.status" class="form-group"  name="msg3_status"  >  -->
+
+        </div>
+          <br>
+        <div *ngIf="mode === 'edit'" style="padding-left: 42px">过户次数: 
+                   <input type="number" [(ngModel)]="insuranceMsg.msg4.count" class="form-group"  name="msg4_month" min="1" style="background: #5a9ecf;color: #fff">     
+        </div>
+          <br> 
+    </div>
+    
+<!-- <div class="row" *ngIf="mode === 'edit'">
+
+    <div class="col-sm-3"  >  
+                    <label for="msg1">查询1</label>
+                    <input [(ngModel)]="insuranceMsg.msg1" type="text" class="form-control" id="msg1" name="msg1" >   
+                              
+                </div>
+
+
+                <div class="col-sm-3" >  
+                 <label for="msg1">查询2</label>
+                <input [(ngModel)]="insuranceMsg.msg2" type="text" class="form-control" id="msg2" placeholder="查询2" name="msg2" required minlength="4" maxlength="24" #msg2 = "ngModel">   
+                <div *ngIf="msg2.errors && (msg2.dirty || msg2.touched)"
+                    class="alert alert-danger"> 
+                        <div [hidden]="!msg2.errors.required">
+                             姓名是必填项
+                        </div>
+                       
+                  </div>             
+            </div>
+
+
+
+            <div class="col-sm-3" >  
+                <label for="msg1">查询3</label>
+                <input [(ngModel)]="insuranceMsg.msg3" type="text" class="form-control" id="msg3" placeholder="查询3" name="msg3" required minlength="4" maxlength="24" #msg3 = "ngModel">   
+                <div *ngIf="msg3.errors && (msg3.dirty || msg3.touched)"
+                    class="alert alert-danger"> 
+                        <div [hidden]="!msg3.errors.required">
+                             姓名是必填项
+                        </div>
+                        
+                  </div>             
+            </div>
+
+
+
+            <div class="col-sm-3" >  
+                 <label for="msg1">查询4</label>
+                <input [(ngModel)]="insuranceMsg.msg4" type="text" class="form-control" id="msg4" placeholder="查询4" name="msg4" required minlength="4" maxlength="24" #msg4 = "ngModel">   
+                <div *ngIf="msg4.errors && (msg4.dirty || msg4.touched)"
+                    class="alert alert-danger"> 
+                        <div [hidden]="!msg4.errors.required">
+                             姓名是必填项
+                        </div>
+                        
+                  </div>             
+            </div>
+
+</div> -->
+
+<br><br>
+    
+    <div class="row"  *ngIf="carStatus=='出售完成' " >
+        
+            <div class="col-sm-4" *ngIf="mode === 'edit'" >
+              <label for="phoneNumber">买家电话号码</label>
+              <input [(ngModel)]="soldStatus.phoneNumber" type="text" class="form-control" id="phoneNumber" placeholder="买家电话号码" name="phoneNumber" required minlength="4" maxlength="24" #name = "ngModel" > 
+              <div *ngIf="name.errors && (name.dirty || name.touched)"
+                    class="alert alert-danger"> 
+                        <div [hidden]="!name.errors.required">
+                             姓名是必填项
+                        </div>
+                       
+                  </div>               
+            </div>
+        
+             <div class="col-sm-4" *ngIf="mode === 'edit'">  
+                <label for="buyprice">购买价格</label>
+                <input [(ngModel)]="soldStatus.price" type="text" class="form-control" id="buyprice" placeholder="购买价格" name="buyprice" required minlength="3" maxlength="24" #nam = "ngModel">   
+                <div *ngIf="nam.errors && (nam.dirty || nam.touched)"
+                    class="alert alert-danger"> 
+                        <div [hidden]="!nam.errors.required">
+                             姓名是必填项
+                        </div>
+                        
+                  </div>             
+            </div>
+
+            <div class="col-sm-3" *ngIf="mode === 'edit'" >
+              <label for="buyDate">购买加入日期</label>
+             
+                  <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd"
+                          name="buyDate" [(ngModel)]="soldStatus.buyDate" ngbDatepicker [dayTemplate]="customDay" [markDisabled]="isDisabled" #d="ngbDatepicker">
+                    <div class="input-group-addon" (click)="d.toggle()" >
+                      <img src="assets/img/theme/icon/kameleon/calendar-icon.svg" style="width: 1.6rem; height: 1rem; cursor: pointer;"/>
+                    </div>
+                  </div>
+              
+
+                  <ng-template #customDay let-date="date" let-currentMonth="currentMonth" let-selected="selected" let-disabled="disabled">
+                    <span class="custom-day" [class.weekend]="isWeekend(date)"
+                          [class.bg-primary]="selected" [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+                      {{ date.day }}
+                    </span>
+                  </ng-template>
+
+             </div>
+    </div>
+ 
+    <div class="form-group" *ngIf="mode === 'edit'">
+        <label for="imageUploader">车辆图片</label>
+        <div>
+            <input type="file" id="list" name="files[]" multiple (change)="handleFileSelect($event)"/>
+        </div>
+        <span>
+            <div style="display: inline-block;padding-right: 10px" *ngFor="let f of imageUrls; let i = index">
+              <img class="thumb" src="{{f.imagePath}}" height="137px" width="240px" style = " padding-right: 1px"/><br><br>
+              <textarea [(ngModel)]="f.imgDesc" placeholder="卖家说" class="form-control" name="imgDesc[{{i}}]" cols="1"></textarea>
+              <br><br>
+            </div>
+        </span>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="button-wrapper" style="text-align:center">
+          <button type="button" class="btn btn-success btn-md" (click)="onSave()">确认</button>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="button-wrapper" style="text-align:center">
+          <button type="button" class="btn btn-danger btn-md" (click)="closeModal()">取消</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="overlay" *ngIf="status == true">
+    <div class="overlay-text">
+      <div class='loader'></div>
+      </div>
+  </div>
+</ba-card>
+
+
+

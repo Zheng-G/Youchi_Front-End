@@ -1,0 +1,7 @@
+<div class="widgets">
+
+  <ba-card title="车票" baCardClass="with-scroll table-panel" *ngIf="areasData && usersData && brandsData && carTypes && sellcarsData">
+    <sellcar-table [areasData]="areasData" [usersData]="usersData" [brandsData]="brandsData" [carTypes]="carTypes" [sellcarsData]="sellcarsData" [testCategoriesData]="testCategoriesData" [filterSellerId]="filterSellerId" [filterUDID]="filterUDID"></sellcar-table> 
+  </ba-card>
+   
+</div>

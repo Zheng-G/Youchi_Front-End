@@ -1,0 +1,33 @@
+<ba-card class="modal-content" title={{modalHeader}} baCardClass="with-scroll no-bottom-margin">
+            <!--<option [ngValue]="oil" *ngFor="let oil of carTypes[0]['fuelOil']">{{oil.oilName}}</option>-->
+
+  <div class="row show-grid" *ngIf="testResult">
+    <div class="col-md" *ngFor="let category of testResult">
+      <p>{{category.testCategory}}</p>
+      <div class="row" *ngFor="let item of category.categoryItems">
+        <label class="control control--checkbox">{{item.testItemName}}
+          <input type="checkbox" name="testResultOptions" value="{{item.testItemName}}" [(ngModel)]="item.checked" [checked]="item.checked"/>
+          <div class="control__indicator"></div>
+        </label>
+      </div>
+    </div>
+
+  </div>
+
+  <!--<div class="input-demo checkbox-demo row">
+    <ba-multi-checkbox [(ngModel)]="checkboxModel" [propertiesMapping]="checkboxPropertiesMapping"></ba-multi-checkbox>
+  </div>-->
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="button-wrapper" style="text-align:center">
+        <button type="button" class="btn btn-success btn-md" (click)="onSave()">确认</button>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="button-wrapper" style="text-align:center">
+        <button type="button" class="btn btn-danger btn-md" (click)="closeModal()">取消</button>
+      </div>
+    </div>
+  </div>
+</ba-card>

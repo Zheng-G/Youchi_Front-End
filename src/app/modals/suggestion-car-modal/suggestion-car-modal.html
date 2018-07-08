@@ -1,0 +1,58 @@
+<ba-card class="modal-content" title={{modalHeader}} baCardClass="with-scroll no-bottom-margin">
+ <form>
+    <div class="row"  *ngIf="type !== 'Third'" required>
+      <div class="form-group col-sm-6">
+        <label for="suggestionBrand">车型</label>
+        <div class="input-group">
+          <input [(ngModel)]="suggestionBrand" type="text" class="form-control with-warning-addon" id="suggestionBrand" name="suggestionBrand" aria-describedby="basic-addon1" (ngModelChange)="onChangeBrand($event)"/>
+          <span class="input-group-addon input-group-addon-warning addon-right" id="basic-addon1">品牌</span>
+        </div>
+      </div>
+      <div class="form-group col-sm-6">
+        <label for="startPrice">起步价</label>
+        <div class="input-group">
+          <input [(ngModel)]="startPrice" type="text" class="form-control with-warning-addon" id="startPrice" name="startPrice" aria-describedby="basic-addon2" (ngModelChange)="onChangePrice($event)"/>
+          <span class="input-group-addon input-group-addon-warning addon-right" id="basic-addon2">万起</span>
+        </div>
+      </div> 
+    </div>
+    <div class='row'  *ngIf='type' required>
+      <div class="form-group col-sm-6">
+        <label for="title">Title</label>
+        <div class="input-group">
+          <input [(ngModel)]="title" type="text" class="form-control with-warning-addon" id="title" name="title" aria-describedby="basic-addon2" (ngModelChange)="onChangePrice($event)"/>
+          <span class="input-group-addon input-group-addon-warning addon-right" id="basic-addon2">type</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="imageUploader">车辆图片（只要选择 *.png 文件）</label>
+      <input type="file" id="carImage" name="files[]" (change)="handleFileSelect($event)"/>
+      <output id="list"></output>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="button-wrapper" style="text-align:center">
+          <button type="button" class="btn btn-success btn-md" (click)="onSave()">确认</button>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="button-wrapper" style="text-align:center">
+          <button type="button" class="btn btn-danger btn-md" (click)="closeModal()">取消</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-----------------Loader bar--------------------- -->
+  <div class="uploadLoader" *ngIf="uploadStatus" required>
+      <div class='position'>
+        <div class='circleProgress'>
+        </div>
+      </div>
+  </div>
+</ba-card>
+
+

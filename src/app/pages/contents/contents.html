@@ -1,0 +1,120 @@
+<div class="widgets">
+  <div class="row">
+    <div class="col-lg-6 col-md-12" >
+      <ba-card title="常见问题" baCardClass="with-scroll table-panel">
+        <faq-table [faqsData]="faqsData"></faq-table>
+      </ba-card>
+    </div>
+  </div>
+
+  <div class="row">
+    <ba-card title="首页BANNER图片" baCardClass="with-scroll table-panel">
+      
+      <div class="row">
+        <div class="col-sm-4">
+          <h4>首页BANNER图片-1</h4>
+          <div class="img-wrapper"><img id="bannerImg1" style="max-width:100%; max-height:100%; object-fit: contain;" src={{bannerImageUrl1}} alt=""/></div>
+          <div class="form-group">
+            <label for="banner1">更换(选择只有png文件)</label>
+            <ba-file-uploader id="banner1" [fileUploaderOptions]="fileUploaderOptions1" (onFileUploadCompleted)="updateBannerImg1($event)"></ba-file-uploader>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <h4>首页BANNER图片-2</h4>
+          <div class="img-wrapper"><img id="bannerImg2" style="max-width:100%; max-height:100%; object-fit: contain;" src={{bannerImageUrl2}} alt=""/></div>
+          <div class="form-group">
+            <label for="banner2">更换(选择只有png文件)</label>
+            <ba-file-uploader id="banner2" [fileUploaderOptions]="fileUploaderOptions2" (onFileUploadCompleted)="updateBannerImg2($event)"></ba-file-uploader>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <h4>首页BANNER图片-3</h4>
+          <div class="img-wrapper"><img id="bannerImg3" style="max-width:100%; max-height:100%; object-fit: contain;" src={{bannerImageUrl3}} alt=""/></div>
+          <div class="form-group">
+            <label for="banner3">更换(选择只有png文件)</label>
+            <ba-file-uploader id="banner3" [fileUploaderOptions]="fileUploaderOptions3" (onFileUploadCompleted)="updateBannerImg3($event)"></ba-file-uploader>
+          </div>
+        </div>
+
+      </div>
+
+    </ba-card>
+  </div>
+
+  <div class="row">
+    <ba-card title="首页推荐车型" baCardClass="table-panel df-size-button-panel">
+      <div class="row" >
+        <div class="col-sm-4">
+          <h4>第一推荐车型</h4>
+          <div *ngIf="firstSuggestion">
+            <h6>车型：{{firstSuggestion.chName}}</h6>
+            <h6>起步价：{{firstSuggestion.startPrice}}万起</h6>
+            <div  class="img-wrapper">
+              <img id="suggestionImg1" style="max-width:100%; max-height:100%; object-fit: contain;" src={{suggestionImg1}} alt=""/>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button type="button" class="btn btn-success btn-md" (click)="onFirstSuggestion()">编辑</button>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <h4>第二推荐车型</h4>
+          <div *ngIf="secondSuggestion">
+            <h6>车型：{{secondSuggestion.chName}}</h6>
+            <h6>起步价：{{secondSuggestion.startPrice}} </h6>
+            <div  class="img-wrapper">
+              <img id="suggestionImg2" style="max-width:100%; max-height:100%; object-fit: contain;" src={{suggestionImg2}} alt=""/>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button type="button" class="btn btn-success btn-md" (click)="onSecondSuggestion()">编辑</button>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <h4>第三推荐车型</h4>
+          <div *ngIf="thirdSuggestion">
+            <h6>车型：{{thirdSuggestion.chName}}</h6>
+            <h6>起步价：{{thirdSuggestion.startPrice}}万起</h6>
+            <div  class="img-wrapper">
+              <img id="suggestionImg3" style="max-width:100%; max-height:100%; object-fit: contain;" src={{suggestionImg3}} alt=""/>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button type="button" class="btn btn-success btn-md" (click)="onThirdSuggestion()">编辑</button>
+          </div>
+        </div>
+
+      </div>
+
+    </ba-card>
+  </div>
+
+    <div class="row">
+    <ba-card title="卖车页面" baCardClass="with-scroll table-panel col-md-8">
+      
+      <div class="row">
+        <div class="col-sm-6" >
+          <h4>顶部图片</h4>
+          <div class="img-wrapper"><img id="bannerImg4" style="max-width:100%; max-height:100%; object-fit: contain;" src={{bannerImageUrl4}} alt=""/></div>
+          <div class="form-group">
+            <label for="banner4">更换(选择只有png文件)</label>
+            <ba-file-uploader id="banner4" [fileUploaderOptions]="fileUploaderOptions4" (onFileUploadCompleted)="updateBannerImg4($event)"></ba-file-uploader>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <h4>卖车进度介绍图片</h4>
+          <div class="img-wrapper"><img id="bannerImg5" style="max-width:100%; max-height:100%; object-fit: contain;" src={{bannerImageUrl5}} alt=""/></div>
+          <div class="form-group">
+            <label for="banner5">更换(选择只有png文件)</label>
+            <ba-file-uploader id="banner5" [fileUploaderOptions]="fileUploaderOptions5" (onFileUploadCompleted)="updateBannerImg5($event)"></ba-file-uploader>
+          </div>
+        </div>
+       
+
+      </div>
+
+    </ba-card>
+  </div>
+
+  
+</div>
